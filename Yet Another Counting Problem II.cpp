@@ -1,3 +1,5 @@
+// Topic : Observation + Math/Number Theory + Prefix Sum
+
 #include<bits/stdc++.h>
 // #include <ext/pb_ds/assoc_container.hpp>
 // #include<ext/pb_ds/tree_policy.hpp>
@@ -96,7 +98,20 @@ int C(int n,int r){if(n<r || r<0)return 0;if(r==1)return n;int nmr=fact[n]%MOD;i
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
 
-
+int sq(int n){
+    int low=1,high=n;
+    int ans=0;
+    while(low<=high){
+        int mid=low+(high-low)/2;
+        if(mid*mid<=n){
+            ans=mid;
+            low=mid+1;
+        }else{
+            high=mid-1;
+        }
+    }
+    return ans;
+}
 void solve()
 {
     int n;
@@ -112,7 +127,7 @@ void solve()
     // currsum is even then remove odd
     int ans=0;
     for(auto &it : arr){
-        int num=sqrtl(it);
+        int num=sq(it);
         num=num*num;
         if(num==it)curr++;
         if(curr&1){
